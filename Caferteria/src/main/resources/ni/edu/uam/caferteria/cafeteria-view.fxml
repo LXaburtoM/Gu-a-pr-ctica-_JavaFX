@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ni.edu.uam.caferteria.CafeteriaController"
+            prefHeight="500" prefWidth="700">
+
+    <top>
+        <Label text="Recepción de Lotes de Café" style="-fx-font-size: 20px; -fx-font-weight: bold;">
+            <BorderPane.margin>
+                <Insets top="10" left="10" bottom="10"/>
+            </BorderPane.margin>
+        </Label>
+    </top>
+
+    <center>
+        <TableView fx:id="tblLotes">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50">
+                    <cellValueFactory><PropertyValueFactory property="id"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colProductor" text="Productor" prefWidth="150">
+                    <cellValueFactory><PropertyValueFactory property="productor"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colFecha" text="Fecha" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="fecha"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colCantidad" text="Cantidad (Kg)" prefWidth="120">
+                    <cellValueFactory><PropertyValueFactory property="cantidadKg"/></cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="colCalidad" text="Calidad" prefWidth="100">
+                    <cellValueFactory><PropertyValueFactory property="calidad"/></cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="5">
+            <padding>
+                <Insets top="10" left="10" right="10" bottom="10"/>
+            </padding>
+            <Label text="Detalle del lote seleccionado:" style="-fx-font-weight: bold;"/>
+            <Label fx:id="lblDetalle" text="Haz clic en un lote para ver sus detalles"/>
+        </VBox>
+    </bottom>
+
+</BorderPane>
