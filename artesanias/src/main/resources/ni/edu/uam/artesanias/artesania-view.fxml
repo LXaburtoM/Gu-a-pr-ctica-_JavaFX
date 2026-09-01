@@ -1,14 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="CONTROLLER_NAME"
-            prefHeight="400.0" prefWidth="600.0">
+            fx:controller="ni.edu.uam.artesanias.controller.ArtesaniaController"
+            prefHeight="500" prefWidth="750">
 
-</AnchorPane>
+    <top>
+        <VBox>
+            <!-- Menú Superior exigido en el reto -->
+            <MenuBar>
+                <menus>
+                    <Menu text="Catálogo">
+                        <items>
+                            <MenuItem text="Ver Productos" />
+                            <MenuItem text="Nuevo Producto" />
+                        </items>
+                    </Menu>
+                    <Menu text="Ventas">
+                        <items>
+                            <MenuItem text="Registrar Venta" />
+                        </items>
+                    </Menu>
+                    <Menu text="Ayuda">
+                        <items>
+                            <MenuItem text="Acerca de" />
+                        </items>
+                    </Menu>
+                </menus>
+            </MenuBar>
+
+            <!-- Barra de Herramientas exigida en el reto -->
+            <ToolBar>
+                <items>
+                    <Button text="Nuevo" onAction="#nuevoProducto"/>
+                    <Button text="Guardar" onAction="#guardarProducto"/>
+                    <Separator orientation="VERTICAL" />
+                    <Label text="Buscar:" />
+                    <TextField fx:id="txtBuscar" onKeyReleased="#filtrarConTeclado" />
+                </items>
+            </ToolBar>
+        </VBox>
+    </top>
+
+    <!-- Formulario básico para ingresar datos -->
+    <left>
+        <VBox spacing="10" prefWidth="200">
+            <padding>
+                <Insets top="15" left="15" right="15" bottom="15"/>
+            </padding>
+
+            <Label text="Código:" />
+            <TextField fx:id="txtCodigo" />
+
+            <Label text="Nombre:" />
+            <TextField fx:id="txtNombre" />
+
+            <Label text="Precio:" />
+            <TextField fx:id="txtPrecio" />
+
+            <Button text="Guardar" onAction="#guardarProducto" maxWidth="Infinity" />
+            <Label fx:id="lblMensaje" wrapText="true" />
+        </VBox>
+    </left>
+
+    <!-- Tabla pura y simple -->
+    <center>
+        <TableView fx:id="tblArtesanias">
+            <columns>
+                <TableColumn fx:id="colImagen" text="Imagen" prefWidth="80"/>
+                <TableColumn fx:id="colCodigo" text="Código" prefWidth="100"/>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="250"/>
+                <TableColumn fx:id="colPrecio" text="Precio" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </center>
+
+</BorderPane>
