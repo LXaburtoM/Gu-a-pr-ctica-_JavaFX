@@ -12,5 +12,10 @@ import ni.edu.uam.artesanias.modelo.Artesania;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-public class ArtesaniaController {
+public class ArtesaniaController implements Initializable {
+    // Componentes del formulario
+    @FXML private TextField txtCodigo;
+    @FXML private TextField txtNombre;
+    @FXML private TextField txtPrecio;
+    @FXML private Label lblMensaje;
 }
