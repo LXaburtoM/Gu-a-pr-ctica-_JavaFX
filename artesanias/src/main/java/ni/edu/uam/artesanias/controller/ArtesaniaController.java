@@ -86,4 +86,22 @@ public class ArtesaniaController implements Initializable {
         txtNombre.clear();
         txtPrecio.clear();
     }
+    @FXML
+    private void filtrarConTeclado(KeyEvent event) {
+        String textoBusqueda = txtBuscar.getText().toLowerCase();
+
+        listaFiltrada.setPredicate(artesania -> {
+
+            if (textoBusqueda.isEmpty()) {
+                return true;
+            }
+            if (artesania.getNombre().toLowerCase().contains(textoBusqueda)) {
+                return true;
+            }
+            if (artesania.getCodigo().toLowerCase().contains(textoBusqueda)) {
+                return true;
+            }
+            return false;
+        });
+    }
 }
