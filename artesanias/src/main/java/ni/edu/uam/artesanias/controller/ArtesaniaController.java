@@ -47,5 +47,43 @@ public class ArtesaniaController implements Initializable {
         // 3. Vincular la tabla con la lista filtrada
         listaFiltrada = new FilteredList<>(listaArtesanias, b -> true);
         tblArtesanias.setItems(listaFiltrada);
+
+    }
+    @FXML
+    private void guardarProducto() {
+        try {
+            String codigo = txtCodigo.getText();
+            String nombre = txtNombre.getText();
+
+            // Validación básica para explicar en clase
+            if (codigo.isEmpty() || nombre.isEmpty() || txtPrecio.getText().isEmpty()) {
+                lblMensaje.setText("Por favor, llene todos los campos.");
+                return;
+            }
+
+            double precio = Double.parseDouble(txtPrecio.getText());
+
+            // Por simplicidad, creamos un contenedor de imagen vacío.
+            // (Para explicar que la tabla soporta imágenes sin complicar el código)
+            ImageView imagenVacia = new ImageView();
+            imagenVacia.setFitWidth(40);
+            imagenVacia.setFitHeight(40);
+
+            // Crear el objeto y agregarlo a la tabla
+            Artesania nueva = new Artesania(codigo, nombre, precio, imagenVacia);
+            listaArtesanias.add(nueva);
+
+            lblMensaje.setText("Artesanía guardada con éxito.");
+            nuevoProducto(); // Limpiamos los campos
+
+        } catch (NumberFormatException e) {
+            lblMensaje.setText("Error: El precio debe ser un número.");
+        }
+    }
+    @FXML
+    private void nuevoProducto() {
+        txtCodigo.clear();
+        txtNombre.clear();
+        txtPrecio.clear();
     }
 }
