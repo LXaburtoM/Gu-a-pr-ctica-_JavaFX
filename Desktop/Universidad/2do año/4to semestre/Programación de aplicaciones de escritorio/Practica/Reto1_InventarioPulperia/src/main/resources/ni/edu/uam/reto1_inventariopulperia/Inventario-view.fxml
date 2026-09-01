@@ -5,11 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="339.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.reto1_inventariopulperia.controller.InventarioController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="505.0" prefWidth="396.0" spacing="8.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.reto1_inventariopulperia.controller.InventarioController">
    <children>
-      <Label alignment="CENTER" prefHeight="18.0" prefWidth="602.0" text="Inventario Pulperia" textFill="#ff9e03">
+      <Label alignment="CENTER" prefHeight="36.0" prefWidth="392.0" text="Inventario Pulperia" textFill="#ff9e03">
          <font>
-            <Font name="MADESunflower" size="24.0" />
+            <Font name="MADESunflower" size="28.0" />
+         </font>
+      </Label>
+      <Label text="Registro de Producto">
+         <font>
+            <Font name="CHERRY LIME" size="17.0" />
          </font>
       </Label>
       <Label text="Código">
@@ -36,12 +41,26 @@
          </font>
       </Label>
       <TextField fx:id="txtCantidad" />
-      <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar">
+      <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#guardarProducto" text="Guardar">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
       </Button>
-      <Label fx:id="lblEstado" text="Label" />
+      <Label layoutX="20.0" layoutY="61.0" text="Buscar Producto">
+         <font>
+            <Font name="CHERRY LIME" size="17.0" />
+         </font>
+      </Label>
+      <Label text="Código del Producto">
+         <font>
+            <Font name="Times New Roman Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtBuscarCodigo" onKeyPressed="#buscarProductoPorEnter" promptText="Ingrese el código y presione ENTER" />
+      <Label fx:id="lblResultado" text="Esperando busqueda...">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font></Label>
    </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
