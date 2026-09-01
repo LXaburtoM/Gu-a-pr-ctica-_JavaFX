@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="339.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="339.0" spacing="5.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ni.edu.uam.reto1_inventariopulperia.controller.InventarioController">
    <children>
       <Label alignment="CENTER" prefHeight="18.0" prefWidth="602.0" text="Inventario Pulperia" textFill="#ff9e03">
          <font>
@@ -36,7 +36,7 @@
          </font>
       </Label>
       <TextField fx:id="txtCantidad" />
-      <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#handleGuardar" text="Guardar">
+      <Button fx:id="btnGuardar" mnemonicParsing="false" text="Guardar">
          <font>
             <Font name="Times New Roman Bold" size="14.0" />
          </font>
