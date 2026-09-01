@@ -37,28 +37,32 @@ public class InventarioController {
         String precioStr = txtPrecio.getText().trim();
         String cantidadStr = txtCantidad.getText().trim();
 
+        // Validar campos vacíos
         if (codigo.isEmpty() || nombre.isEmpty() || precioStr.isEmpty() || cantidadStr.isEmpty()) {
-            lblResultado.setText("Error: Todos los campos de registro son obligatorios.");
+            mostrarAlerta(Alert.AlertType.WARNING, "Campos Incompletos", "Por favor, llene todos los campos de registro.");
             return;
         }
 
+        // Validar valores numéricos
         try {
             double precio = Double.parseDouble(precioStr);
             int cantidad = Integer.parseInt(cantidadStr);
 
             if (precio <= 0 || cantidad < 0) {
-                lblResultado.setText("Error: Precio debe ser > 0 y cantidad >= 0.");
+                mostrarAlerta(Alert.AlertType.ERROR, "Datos Inválidos", "El precio debe ser mayor a 0 y la cantidad no puede ser negativa.");
                 return;
             }
 
+            // Registrar producto en la colección
             Producto producto = new Producto(codigo, nombre, precio, cantidad);
             inventario.put(codigo, producto);
 
-            lblResultado.setText("¡Producto '" + nombre + "' registrado con éxito!");
+            // Mensaje flotante de éxito
+            mostrarAlerta(Alert.AlertType.INFORMATION, "Éxito", "¡El producto '" + nombre + "' fue guardado correctamente!");
             limpiarCamposRegistro();
 
         } catch (NumberFormatException e) {
-            lblResultado.setText("Error: Precio debe ser decimal y cantidad un entero.");
+            mostrarAlerta(Alert.AlertType.ERROR, "Error de Formato", "El precio debe ser un número decimal y la cantidad un número entero.");
         }
     }
 
@@ -68,22 +72,36 @@ public class InventarioController {
             String codigoBusqueda = txtBuscarCodigo.getText().trim();
 
             if (codigoBusqueda.isEmpty()) {
-                lblResultado.setText("Error: Ingrese un código en la casilla de búsqueda.");
+                if (lblResultado != null) {
+                    lblResultado.setText("Ingrese un código para buscar.");
+                }
                 return;
             }
 
             if (inventario.containsKey(codigoBusqueda)) {
                 Producto p = inventario.get(codigoBusqueda);
 
-                // Muestra la información del producto estructurada en el Label
-                lblResultado.setText(String.format(
-                        "Producto Encontrado:\nCódigo: %s\nNombre: %s\nPrecio: $%.2f\nExistencias: %d unidades",
-                        p.getCodigo(), p.getNombre(), p.getPrecio(), p.getCantidad()
-                ));
+                // Muestra la información dentro del Label de abajo
+                if (lblResultado != null) {
+                    lblResultado.setText(String.format(
+                            "Producto Encontrado:\nCódigo: %s\nNombre: %s\nPrecio: $%.2f\nExistencias: %d unidades",
+                            p.getCodigo(), p.getNombre(), p.getPrecio(), p.getCantidad()
+                    ));
+                }
             } else {
-                lblResultado.setText("No se encontró ningún producto con el código: " + codigoBusqueda);
+                if (lblResultado != null) {
+                    lblResultado.setText("No se encontró ningún producto con el código: " + codigoBusqueda);
+                }
             }
         }
+    }
+
+    private void mostrarAlerta(Alert.AlertType tipo, String titulo, String mensaje) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
     private void limpiarCamposRegistro() {
